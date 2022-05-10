@@ -1,7 +1,7 @@
 import Nav from './Nav';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-const Layouts = ({ classes, children }) => {
+const Layout = ({ classes, children }) => {
   return (
     <div className={classes.root}>
       <Nav />
@@ -22,4 +22,4 @@ const styles = () => ({
   },
 });
 
-export default withStyles(styles)(Layouts);
+export default withStyles(styles)(Layout);

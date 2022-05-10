@@ -1,8 +1,8 @@
-import Nav from './Nav';
+import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Container from '@material-ui/core/Container';
 
-const Layout = ({
+const ContentGrid = ({
   title = 'Title',
   sort = '',
   children,
@@ -48,4 +48,12 @@ const styles = () => ({
   },
 });
 
-export default withStyles(styles)(Layout);
+ContentGrid.propTypes = {
+  title: PropTypes.string,
+  sort: PropTypes.object,
+  children: PropTypes.node,
+  classes: PropTypes.object,
+  pageControls: PropTypes.object
+}
+export default withStyles(styles)(ContentGrid);
+

@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import { Button as MuiButton} from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-const ButtonLink = ({
+const Button = ({
   variant = 'outlined',
   disabled,
-  color = '',
+  color = 'default',
   path = '',
   onClick,
   pageButton,
@@ -19,14 +20,14 @@ const ButtonLink = ({
       to={path}
       style={{ textDecoration: 'none' }}
     >
-      <Button
+      <MuiButton
         variant={variant}
         color={color}
-        // disabled={disabled}
+        disabled={disabled}
         className={pageButton ? classes.pageButton : null}
       >
         {children}
-      </Button>
+      </MuiButton>
     </Link>
   );
 };
@@ -47,4 +48,22 @@ const styles = () => ({
   },
 });
 
-export default withStyles(styles)(ButtonLink);
+Button.propTypes = {
+  variant: PropTypes.string,
+  disabled: PropTypes.bool,
+  color: PropTypes.string,
+  path: PropTypes.string,
+  onClick: PropTypes.func,
+  pageButton: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
+  classes: PropTypes.object
+}
+
+Button.defaultProps = {
+  variant: 'outlined'
+}
+
+export default withStyles(styles)(Button);

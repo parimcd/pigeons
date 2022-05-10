@@ -20,7 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "client-test":"react-scripts test",
+    "test": "run-p server client-test",
     "eject": "react-scripts eject",
     "server": "node-env-run server --exec nodemon",
     "dev": "run-p server start"

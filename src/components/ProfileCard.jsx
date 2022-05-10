@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-const PigeonCard = ({ classes, card, pigeon }) => {
+const ProfileCard = ({ classes, card, pigeon }) => {
   const renderDetails = (
     <div className={classes.list}>
       <div className={classes.title}>
@@ -51,4 +52,10 @@ const styles = () => ({
   },
 });
 
-export default withStyles(styles)(PigeonCard);
+ProfileCard.propTypes = {
+  classes: PropTypes.object,
+  card: PropTypes.bool,
+  pigeon: PropTypes.object
+}
+
+export default withStyles(styles)(ProfileCard);

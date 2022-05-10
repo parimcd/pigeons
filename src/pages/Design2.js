@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { endPoint, sortOptions } from '../config';
-import Layout from '../components/Layout';
-import Card from '../components/PigeonCard';
+import { endPoint, sortOptions, objectToQuery } from '../helpers';
+import ContentGrid from '../components/ContentGrid';
+import Card from '../components/ProfileCard';
 import Dropdown from '../components/Dropdown';
-import ButtonLink from '../components/ButtonLink';
+import Button from '../components/Button';
 
 const Design2 = ({ classes }) => {
   const [pigeons, setPigeons] = useState([]);
@@ -26,9 +26,7 @@ const Design2 = ({ classes }) => {
 
   const loadPigeons = async () => {
     try {
-      const res = await axios.get(
-        endPoint(`/pigeons?_sort=${sort}&_start=${start}&_end=${end}`)
-      );
+      const res = await axios.get(endPoint(`/pigeons?${objectToQuery(query)}`));
       setPigeons([...pigeons, ...res.data.data]);
       setTotalPigeons(res.data.total);
     } catch (err) {
@@ -56,35 +54,30 @@ const Design2 = ({ classes }) => {
 
   const renderPageControls = (
     <div>
-      {isMorePigeons ? (
-        <ButtonLink onClick={handleLoadmore}>Load more</ButtonLink>
-      ) : (
-        ''
-      )}
+      {isMorePigeons ? <Button onClick={handleLoadmore}>Load more</Button> : ''}
     </div>
   );
 
   const renderPigeonList = (
     <div className={classes.root}>
-      {pigeons ? pigeons.map((p) => <Card card pigeon={p} />) : ''}
-    </div>
-  );
-
-  const renderSortDropdown = (
-    <div className={classes.sort}>
-      <span>sort by</span>
-      <Dropdown options={sortOptions} onChange={handleSortChange} sort={sort} />
+      {pigeons ? pigeons.map((p, i) => <Card card pigeon={p} key={i} />) : ''}
     </div>
   );
 
   return (
-    <Layout
+    <ContentGrid
       title={`${displayingNumbers} out of ${totalPigeons} Pigeons`}
-      sort={renderSortDropdown}
+      sort={
+        <Dropdown
+          options={sortOptions}
+          onChange={handleSortChange}
+          sort={sort}
+        />
+      }
       pageControls={renderPageControls}
     >
       {renderPigeonList}
-    </Layout>
+    </ContentGrid>
   );
 };
 

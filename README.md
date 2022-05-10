@@ -12,21 +12,20 @@ using. (We use React)
 
 In this exercise, three different views will be produced to display the results
 of pigeon racing data. Please produce all different UIs along with a method for
-switching among them. 
+switching among them.
 
 Please submit the code along with build instructions. (You may give use a link
 to a github repo or another source.)
 
-
 ## Initial Setup
 
-Starting the backend:
+Starting the backend and frontend:
 
 1. Ensure you have the required runtime environment
-    - Node v10+
-    - Access to the Internet
+   - Node v10+
+   - Access to the Internet
 2. Install the dependencies `npm install` or `yarn install`
-3. Run the project `npm start` or `yarn start`
+3. Run the project `npm run dev` or `yarn dev`
 
 This will run the backend service on port 3002
 
@@ -56,7 +55,7 @@ For this task, we'd like you to extend your previous code to show the following 
 
 You'll see that in this design, the vertical list is now a collection of cards. We would like this collection to be sortable by any of the fields visible by choosing from a dropdown above the collection.
 
-We'd also like to change the pagination to an "add more" button that retrieves more records and adds them to the collection. The grid should be responsive and when resized the cards should all remain evenly sized and spaced with every row aligned to the left edge.  Each card can grow as space allows but the cards should never get small enough to make any content wrap inside the card.
+We'd also like to change the pagination to an "add more" button that retrieves more records and adds them to the collection. The grid should be responsive and when resized the cards should all remain evenly sized and spaced with every row aligned to the left edge. Each card can grow as space allows but the cards should never get small enough to make any content wrap inside the card.
 
 ![task 3 design](./design3.png)
 
@@ -64,20 +63,24 @@ The pagination needs to be updated again and should now show the first and last 
 
 ## API Reference
 
-By default this api is located at `http://localhost:3002`.  It uses these data structures.
+By default this api is located at `http://localhost:3002`. It uses these data structures.
 
 ## Pigeon Object
 
 ```yaml
-{
-    "Pos": Int, // The position the pigeon finished the race in.
-    "Breeder": String, // The name of the breeder.
-    "Pigeon": String, // The name of the pigeon.
-    "Color": String, // The color of the pigeon.
-    "Sex": String, // The gender of the pigeon.
-    "Arrival": String, // The time of arrival at the finish line.
-    "Speed": Float, // The average speed of the pigeon.
-}
+{ 'Pos': Int, ? // The position the pigeon finished the race in.
+    "Breeder"
+  : String, ? // The name of the breeder.
+    "Pigeon"
+  : String, ? // The name of the pigeon.
+    "Color"
+  : String, ? // The color of the pigeon.
+    "Sex"
+  : String, ? // The gender of the pigeon.
+    "Arrival"
+  : String, ? // The time of arrival at the finish line.
+    "Speed"
+  : Float, // The average speed of the pigeon. }
 ```
 
 ## `GET /pigeons`
@@ -86,16 +89,16 @@ This endpoint returns an array of **Pigeon** objects.
 
 It accepts the following query parameters
 
-- _start: Int - defines the start index to return, optional.
-- _end: Int - defines the end index to return, optional.
-- _page: Int - defines the page number to return, optional.
-- _limit: Int - defines the number of records to return, optional.
-- _sort: String - defines the field to sort the results by, optional.
-- _order: asc|desc - defines the directions to sort the results, optional.
+- \_start: Int - defines the start index to return, optional.
+- \_end: Int - defines the end index to return, optional.
+- \_page: Int - defines the page number to return, optional.
+- \_limit: Int - defines the number of records to return, optional.
+- \_sort: String - defines the field to sort the results by, optional.
+- \_order: asc|desc - defines the directions to sort the results, optional.
 
 Example request
 `http://localhost:3002/pigeons?_page=7&_limit=20`
 
 ### Note
 
-When using _limit, the service will respond with a header named X-Total-Count that contains the total number of records that are in the collection.
+When using \_limit, the service will respond with a header named X-Total-Count that contains the total number of records that are in the collection.
