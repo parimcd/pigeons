@@ -10,7 +10,6 @@ const ContentGrid = ({
   pageControls,
 }) => {
   return (
-    // <div className={classes.root}>
     <Container maxWidth="lg">
       <div className={classes.header}>
         <div className={classes.title}>{title}</div>
@@ -18,7 +17,6 @@ const ContentGrid = ({
       </div>
       <div className={classes.main}>{children}</div>
       <div className={classes.pageNav}>{pageControls}</div>
-      {/* </div> */}
     </Container>
   );
 };
